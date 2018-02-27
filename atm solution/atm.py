@@ -1,14 +1,13 @@
   # allowed papers: 100, 50, 10, 5, and cents
 
 def withdraw(balance, request):
+  result = balance
   print 'current balance is ' + str(balance)
   if request > balance:
     print("Can't give you all this money !!")
-    return balance
 
   elif request <= 0:
     print("More than zero plz!")
-    return balance
 
   else:
     
@@ -35,7 +34,8 @@ def withdraw(balance, request):
       elif request < 5:
         print("give " + str(request))
         request = 0
-    return (balance - deducted_money)
+    result = balance - deducted_money
+  return result
 
 balance = 500
 
