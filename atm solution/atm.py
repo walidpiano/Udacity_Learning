@@ -1,6 +1,7 @@
 class ATM:
   
   def __init__(self, balance, bank_name):
+    self.withdrawals_list = []
     self.balance = balance
     self.bank_name = bank_name
   
@@ -16,9 +17,14 @@ class ATM:
   
     else:
       self.balance -= request
+      self.withdrawals_list.append(request)
       self.process_request(request)
     print '=================================='  
     return self.balance
+
+  def withdrawals(self):
+    for withdrawal in self.withdrawals_list:
+      print withdrawal
   
   @staticmethod
   def process_request(request):
@@ -54,5 +60,11 @@ atm2 = ATM(balance2, "Baraka Bank")
 atm1.withdraw(277)
 atm1.withdraw(800)
 
+
 atm2.withdraw(100)
 atm2.withdraw(2000)
+
+
+#to show the withdrawal history
+atm1.withdrawals()
+atm2.withdrawals()
