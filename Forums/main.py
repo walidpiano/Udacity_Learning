@@ -14,3 +14,10 @@ post2 = models.Post("Programming",
 post3 = models.Post("Python Language",
                     "Python language is a very strong language that supports object oriented programming",
                     member1)
+
+print member1
+print member2
+
+print post1
+print post2
+print post3
