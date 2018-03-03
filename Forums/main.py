@@ -1,4 +1,5 @@
 import models
+import store
 
 member1 = models.Member("Walid", 32)
 member2 = models.Member("Omar", 23)
@@ -15,9 +16,22 @@ post3 = models.Post("Python Language",
                     "Python language is a very strong language that supports object oriented programming",
                     member1)
 
-print member1
-print member2
+#print member1
+#print member2
 
-print post1
-print post2
-print post3
+#print post1
+#print post2
+#print post3
+
+member_store = store.MemberStore()
+member_store.add(member1)
+member_store.add(member2)
+
+print (member_store.get_all())
+
+post_store = store.PostStore()
+post_store.add(post1)
+post_store.add(post2)
+post_store.add(post3)
+
+print (post_store.get_all())
