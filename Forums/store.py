@@ -1,31 +1,56 @@
 class MemberStore:
 
     members = []
+    last_id = 1
 
-    def get_all(self):
+    @staticmethod
+    def get_all():
         # get all members
-        return self.members
+        return MemberStore.members
 
-
-    def add(self, member):
+    @staticmethod
+    def add(member):
         # append member
-        self.members.append(member)
+        member.id = MemberStore.last_id
+        MemberStore.members.append(member)
+        MemberStore.last_id += 1
 
-    def get_by_id(self, id):
+    @staticmethod
+    def get_by_id(id):
         # search for member by id
-        print ''
+        result = None
+        for e in MemberStore.members:
+            if e.id == id:
+                result =  e
+                break
+        return result
 
-    def update(self, member):
+    @staticmethod
+    def update(member):
         # update member data
-        print ''
+        pass
 
-    def delete(self, id):
+    @staticmethod
+    def delete(id):
         # delete member by id
-        print ''
+        member_to_delete = MemberStore.get_by_id(id)
+        if member_to_delete is not None:
+            x = 0
+            while x < len(MemberStore.members):
+                print str(x)
+                if MemberStore.members[x].id == member_to_delete.id:
+                    del MemberStore.members[x]
+                    break
+                x += 1
 
-    def entity_exists(self, member):
+    @staticmethod
+    def entity_exists(member):
         # checks if an intity exists in a store
-        print ''
+        result = False
+        if MemberStore.get_by_id(member.id) is not None:
+            result = True
+        return result
+
 
 class PostStore:
 
@@ -41,8 +66,8 @@ class PostStore:
 
     def get_by_id(self, id):
         # search for a post by id
-        print ''
+        pass
 
     def delete(self, id):
         # delete a post
-        print ''
+        pass

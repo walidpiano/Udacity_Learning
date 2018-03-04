@@ -27,11 +27,13 @@ member_store = store.MemberStore()
 member_store.add(member1)
 member_store.add(member2)
 
-print (member_store.get_all())
-
 post_store = store.PostStore()
 post_store.add(post1)
 post_store.add(post2)
 post_store.add(post3)
 
-print (post_store.get_all())
+print (store.MemberStore.get_all())
+print (store.MemberStore.get_by_id(7))
+print (store.MemberStore.entity_exists(member1))
+
+store.MemberStore.delete(1)

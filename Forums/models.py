@@ -1,6 +1,7 @@
 class Member:
 
     def __init__(self, name, age):
+        self.id = 0
         self.name = name
         self.age = age
 
