@@ -32,8 +32,15 @@ post_store.add(post1)
 post_store.add(post2)
 post_store.add(post3)
 
-print (store.MemberStore.get_all())
-print (store.MemberStore.get_by_id(7))
-print (store.MemberStore.entity_exists(member1))
+# for testing members
 
-store.MemberStore.delete(1)
+print (member_store.get_all())
+print (member_store.get_by_id(1))
+member_store.delete(1)
+print (member_store.entity_exists(member1))
+
+print (post_store.get_all())
+print (post_store.get_by_id(2))
+print (post_store.entity_exists(post2))
+post_store.delete(2)
+print (post_store.entity_exists(post2))
