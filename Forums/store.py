@@ -3,44 +3,38 @@ class MemberStore:
     members = []
     last_id = 1
 
-    def get_all(self):
-        # get all members
-        return self.members
+    @staticmethod
+    def get_all():
+        return MemberStore.members
 
-    def add(self, member):
-        # append member
-        member.id = self.last_id
-        self.members.append(member)
-        self.last_id += 1
+    @staticmethod
+    def add(member):
+        member.id = MemberStore.last_id
+        MemberStore.members.append(member)
+        MemberStore.last_id += 1
 
-    def get_by_id(self, id):
-        # search for member by id
+    @staticmethod
+    def get_by_id(id):
         result = None
-        for e in self.members:
+        for e in MemberStore.members:
             if e.id == id:
                 result =  e
                 break
         return result
 
-    def update(self, member):
-        # update member data
+    @staticmethod
+    def update(member):
         pass
 
-    def delete(self, id):
-        # delete member by id
-        member_to_delete = self.get_by_id(id)
-        if member_to_delete is not None:
-            x = 0
-            while x < len(self.members):
-                if self.members[x].id == member_to_delete.id:
-                    del self.members[x]
-                    break
-                x += 1
+    @staticmethod
+    def delete(id):
+        member_to_delete = MemberStore.get_by_id(id)
+        MemberStore.members.remove(member_to_delete)
 
-    def entity_exists(self, member):
-        # checks if an intity exists in a store
+    @staticmethod
+    def entity_exists(member):
         result = False
-        if self.get_by_id(member.id) is not None:
+        if MemberStore.get_by_id(member.id) == member:
             result = True
         return result
 
@@ -50,40 +44,33 @@ class PostStore:
     posts = []
     last_id = 1
 
-    def get_all(self):
-        # get all posts
-        return self.posts
+    @staticmethod
+    def get_all():
+        return PostStore.posts
 
-    def add(self, post):
-        # append post
-        post.id = self.last_id
-        self.posts.append(post)
-        self.last_id += 1
+    @staticmethod
+    def add(post):
+        post.id = PostStore.last_id
+        PostStore.posts.append(post)
+        PostStore.last_id += 1
 
-    def get_by_id(self, id):
-        # search for a post by id
+    @staticmethod
+    def get_by_id(id):
         post = None
-        for e in self.posts:
+        for e in PostStore.posts:
             if e.id == id:
                 post = e
                 break
         return post
 
+    @staticmethod
+    def delete(id):
+        post_to_delete = PostStore.get_by_id(id)
+        PostStore.posts.remove(post_to_delete)
 
-    def delete(self, id):
-        # delete a post
-        post_to_delete = self.get_by_id(id)
-        if post_to_delete is not None:
-            x = 0
-            while x < len(self.posts):
-                if self.posts[x].id == post_to_delete.id:
-                    del self.posts[x]
-                    break
-                x += 1
-
-    def entity_exists(self, post):
-        # checks if an intity exists in a store
+    @staticmethod
+    def entity_exists(post):
         result = False
-        if self.get_by_id(post.id) is not None:
+        if PostStore.get_by_id(post.id) == post:
             result = True
         return result

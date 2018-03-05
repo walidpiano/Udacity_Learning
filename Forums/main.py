@@ -16,12 +16,6 @@ post3 = models.Post("Python Language",
                     "Python language is a very strong language that supports object oriented programming",
                     member1)
 
-#print member1
-#print member2
-
-#print post1
-#print post2
-#print post3
 
 member_store = store.MemberStore()
 member_store.add(member1)
@@ -32,15 +26,13 @@ post_store.add(post1)
 post_store.add(post2)
 post_store.add(post3)
 
-# for testing members
+print (store.MemberStore.get_all())
+print (store.MemberStore.get_by_id(1))
+store.MemberStore.delete(1)
+print (store.MemberStore.entity_exists(member1))
 
-print (member_store.get_all())
-print (member_store.get_by_id(1))
-member_store.delete(1)
-print (member_store.entity_exists(member1))
-
-print (post_store.get_all())
-print (post_store.get_by_id(2))
-print (post_store.entity_exists(post2))
-post_store.delete(2)
-print (post_store.entity_exists(post2))
+print (store.PostStore.get_all())
+print (store.PostStore.get_by_id(2))
+print (store.PostStore.entity_exists(post2))
+store.PostStore.delete(2)
+print (store.PostStore.entity_exists(post2))
