@@ -15,16 +15,18 @@ class MemberStore:
 
     @staticmethod
     def get_by_id(id):
+        all_members = MemberStore.get_all()
         result = None
-        for e in MemberStore.members:
-            if e.id == id:
-                result =  e
+        for member in MemberStore.members:
+            if member.id == id:
+                result =  member
                 break
         return result
 
     @staticmethod
     def update(member):
-        pass
+        member_to_update = MemberStore.get_by_id(member.id)
+        member_to_update = member
 
     @staticmethod
     def delete(id):
@@ -37,6 +39,18 @@ class MemberStore:
         if MemberStore.get_by_id(member.id) == member:
             result = True
         return result
+
+    @staticmethod
+    def get_by_name(name):
+        result = []
+        all_members = MemberStore.get_all()
+        for member in all_members:
+            print member
+            if member.name == name:
+                result.append(member)
+                print 'match'
+        return result
+
 
 
 class PostStore:
