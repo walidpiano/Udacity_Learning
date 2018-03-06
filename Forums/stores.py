@@ -25,8 +25,13 @@ class MemberStore:
 
     @staticmethod
     def update(member):
-        member_to_update = MemberStore.get_by_id(member.id)
-        member_to_update = member
+        all_members = MemberStore.get_all()
+        for index, current_member in enumerate(all_members):
+            if current_member.id == member.id:
+                all_members[index] = member
+                break
+
+
 
     @staticmethod
     def delete(id):
@@ -48,7 +53,6 @@ class MemberStore:
             print member
             if member.name == name:
                 result.append(member)
-                print 'match'
         return result
 
 
