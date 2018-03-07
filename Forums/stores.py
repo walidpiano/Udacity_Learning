@@ -3,57 +3,45 @@ class MemberStore:
     members = []
     last_id = 1
 
-    @staticmethod
-    def get_all():
-        return MemberStore.members
+    def get_all(self):
+        return self.members
 
-    @staticmethod
-    def add(member):
-        member.id = MemberStore.last_id
-        MemberStore.members.append(member)
-        MemberStore.last_id += 1
+    def add(self, member):
+        member.id = self.last_id
+        self.members.append(member)
+        self.last_id += 1
 
-    @staticmethod
-    def get_by_id(id):
-        all_members = MemberStore.get_all()
+    def get_by_id(self, id):
+        all_members = self.get_all()
         result = None
-        for member in MemberStore.members:
+        for member in self.members:
             if member.id == id:
                 result =  member
                 break
         return result
 
-    @staticmethod
-    def update(member):
-        all_members = MemberStore.get_all()
+    def update(self, member):
+        all_members = self.get_all()
         for index, current_member in enumerate(all_members):
             if current_member.id == member.id:
                 all_members[index] = member
                 break
 
+    def delete(self, id):
+        member_to_delete = self.get_by_id(id)
+        self.members.remove(member_to_delete)
 
-
-    @staticmethod
-    def delete(id):
-        member_to_delete = MemberStore.get_by_id(id)
-        MemberStore.members.remove(member_to_delete)
-
-    @staticmethod
-    def entity_exists(member):
-        result = False
-        if MemberStore.get_by_id(member.id) == member:
-            result = True
+    def entity_exists(self, member):
+        result = True
+        if self.get_by_id(member.id) is None:
+            result = False
         return result
 
-    @staticmethod
-    def get_by_name(name):
-        result = []
-        all_members = MemberStore.get_all()
+    def get_by_name(self, name):
+        all_members = self.get_all()
         for member in all_members:
-            print member
             if member.name == name:
-                result.append(member)
-        return result
+                yield member
 
 
 
@@ -62,33 +50,28 @@ class PostStore:
     posts = []
     last_id = 1
 
-    @staticmethod
-    def get_all():
-        return PostStore.posts
+    def get_all(self):
+        return self.posts
 
-    @staticmethod
-    def add(post):
-        post.id = PostStore.last_id
-        PostStore.posts.append(post)
-        PostStore.last_id += 1
+    def add(self, post):
+        post.id = self.last_id
+        self.posts.append(post)
+        self.last_id += 1
 
-    @staticmethod
-    def get_by_id(id):
+    def get_by_id(self, id):
         post = None
-        for e in PostStore.posts:
+        for e in self.posts:
             if e.id == id:
                 post = e
                 break
         return post
 
-    @staticmethod
-    def delete(id):
-        post_to_delete = PostStore.get_by_id(id)
-        PostStore.posts.remove(post_to_delete)
+    def delete(self, id):
+        post_to_delete = self.get_by_id(id)
+        self.posts.remove(post_to_delete)
 
-    @staticmethod
-    def entity_exists(post):
+    def entity_exists(self, post):
         result = False
-        if PostStore.get_by_id(post.id) == post:
+        if self.get_by_id(post.id) == post:
             result = True
         return result
