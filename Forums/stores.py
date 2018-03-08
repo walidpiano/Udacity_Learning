@@ -39,10 +39,19 @@ class MemberStore:
 
     def get_by_name(self, name):
         all_members = self.get_all()
-        for member in all_members:
-            if member.name == name:
-                yield member
+        return (member for member in all_members if member.name == name)
 
+    def get_members_with_posts(self, post_store):
+        for post in post_store:
+            member = self.get_by_id(post.member_id)
+            member.posts.append(post.id)
+            self.update(member)
+        return self.members
+
+    def get_top_two(self, post_store):
+        all_member = self.get_members_with_posts(post_store)
+        sorted_member = sorted(all_member, key=lambda x: len(x.posts), reverse=True)
+        return sorted_member[:2]
 
 
 class PostStore:
