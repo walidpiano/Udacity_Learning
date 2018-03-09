@@ -1,3 +1,6 @@
+import itertools
+
+
 class MemberStore:
 
     members = []
@@ -41,12 +44,12 @@ class MemberStore:
         all_members = self.get_all()
         return (member for member in all_members if member.name == name)
 
-    def get_members_with_posts(self, post_store):
-        for post in post_store:
-            member = self.get_by_id(post.member_id)
-            member.posts.append(post.id)
-            self.update(member)
-        return self.members
+    def get_members_with_posts(self, posts):
+        members = self.get_all()
+        for member, post in itertools.product(members, posts):
+            if post.member_id == member.id:
+                member.posts.append(post)
+        return members
 
     def get_top_two(self, post_store):
         all_member = self.get_members_with_posts(post_store)
