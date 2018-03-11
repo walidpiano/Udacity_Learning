@@ -153,4 +153,3 @@ store_should_add_posts(posts_instances, post_store)
 store_should_get_members_with_posts(member_store, post_store)
 
 store_should_get_top_two(member_store, post_store)
-
