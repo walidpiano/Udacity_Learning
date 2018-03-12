@@ -60,3 +60,9 @@ target/
 Forums/\.idea/
 
 Forums/venv2/
+
+*.iml
+
+flask-demo/\.idea/
+
+flask-demo/venv/
