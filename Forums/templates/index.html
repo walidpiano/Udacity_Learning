@@ -1,96 +1,65 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<title>Udacity Forum</title>
-<link href="https://fonts.googleapis.com/css?family=Coda+Caption:800" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
+
 <head>
-<style>
-    h1 {
-        color: white;
-        background-color: #7cacf9;
-        font-family: 'Coda Caption', sans-serif;
-        padding: 10px 10px 5px 10px;
-        margin: 0 auto;
-        text-align: center;
-    }
-    h2 {
-        text-align: center;
-    }
-    a {
-        margin: 0 10px 0 10px;
-        font-family: 'Fjalla One', sans-serif;
-        color: brown;
-        font-size: 20px;
-    }
-    div {
-        background: #d6e5fc;
-    }
-    .tableLink {
-        color: black;
-    }
-    table {
-        text-align: left;
-        font-family: 'Fjalla One', sans-serif;
-        border: 3px solid gray;
-        border-radius: 20px;
-        max-width: 80%;
-        position: center;
-        margin: 0 auto;
-    }
-    th {
-        background: #d6e5fc;
-        padding: 8px;
-    }
-    td {
-        padding: 5px;
-    }
-    .normal {
-        font-family: 'Fjalla One', sans-serif;
-        color: black;
-        font-size: 17px;
-    }
-    .seperator {
-        width: 100%;
-        height: 3px;
-        background: gray;
-        margin: 0 0 20px 0;
-    }
-</style>
+    <meta charset="utf-8">
+    <title>Forums Workshop</title>
+    <link rel="stylesheet" href="/static/style.css"
 </head>
+
 <body>
-    <h1>One Million</h1>
-    <h2>
+
+    <div class="centered-item">
+        <h1>OneMillion</h1>
+    </div>
+
+    <div class="centered-item">
         <a href="#">Members</a>
-        <a href="#">Profiles</a>
-    </h2>
-    <div class="seperator"></div>
-    <a class="tableLink" href="#">Create</a>
 
-    <table style="text-align: left;">
-        <col width="80%">
-        <col width="20%">
-        <col width="20%">
-        <tr>
-            <th>Title</th>
-            <th>Edit</th>
-            <th>Delete</th>
-        </tr>
+        <a href="#">Profile</a>
+    </div>
 
-        <tr>
-            <td>topic 1</td>
-            <td><a class="normal" href="#">edit</a></td>
-            <td><a class="normal" href="#">delete</a></td>
-        </tr>
-        <tr>
-            <td>topic 2</td>
-            <td><a class="normal" href="#">edit</a></td>
-            <td><a class="normal" href="#">delete</a></td>
-        </tr>
-        <tr>
-            <td>topic 3</td>
-            <td><a class="normal" href="#">edit</a></td>
-            <td><a class="normal" href="#">delete</a></td>
-        </tr>
-    </table>
+    <div class="content">
+        <a href="#">Create</a>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>
+                        Title
+                    </th>
+
+                    <th>
+                        Edit
+                    </th>
+
+                    <th>
+                        Delete
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for post in posts %}
+                <tr>
+                    <td>
+                        {{post.title}}
+                    </td>
+
+                    <td>
+                        <a href="#">edit</a>
+                    </td>
+
+                    <td>
+                        <a href="#">delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
 </body>
+
 </html>
